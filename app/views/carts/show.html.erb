@@ -48,9 +48,11 @@
   <div class="pt-3 alert alert-warning text-center" role="alert">
     Your Cart is Empty
     <div class="py-3 mt-3">
-      <a class="btn btn-warning" href="/">
+      <!-- <a class="btn btn-warning" href="/"> -->
+      <!-- <a class="btn btn-warning" href="<%= root_path %>">
         Home
-      </a>
+      </a> -->
+      <%= link_to 'Home', root_path, class: "btn btn-warning" %>
     </div>
   </div>
   <% end %>
