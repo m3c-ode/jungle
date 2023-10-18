@@ -1,8 +1,11 @@
+<%# debug @category %>
+
 <section class="categories-show">
 
   <header class="page-header">
     <h1>
-      <%= @category.name %>
+      <%# raise @category.inspect  %>
+      <%= @category.name %>!!!
       <small>(<%= pluralize @products.size, 'product' %>)</small>
     </h1>
   </header>
