@@ -1,2 +1,27 @@
-<h1>Admin::Dashboard#show</h1>
-<p>Find me in app/views/admin/dashboard/show.html.erb</p>
+<!-- <h1 class="mt-3 my-3">Admin - Dashboard</h1> -->
+<header class="page-header">
+  <h1>Admin &raquo; Dashboard</h1>
+</header>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Data</th>
+      <th scope="col">Count</th>
+      <th scope="col">List</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row"><%= 'Products' %></th>
+      <td><%= @products.length %></td>
+      <td><%= @products.map {|product| product.name} .join(', ') %></td>
+    </tr>
+    <tr>
+      <th scope="row"><%= 'Categories' %></th>
+      <td><%= @categories.length %></td>
+      <td><%= @categories.map {|category| category.name} .join(', ') %></td>
+
+    </tr>
+  </tbody>
+</table>
