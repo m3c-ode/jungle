@@ -1,5 +1,8 @@
 class CartsController < ApplicationController
 
+  # Secure routes, defines in application_controller
+  before_filter :authorize
+
   def show
   end
 

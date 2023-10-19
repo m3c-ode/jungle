@@ -2,6 +2,11 @@ Rails.application.routes.draw do
 
   root to: 'products#index'
   
+  # Session routes
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  get '/logout', to: 'sessions#destroy'
+
   resources :users
   
   # get '/signup' => 'users#new'
