@@ -18,6 +18,13 @@
   <%= render 'layouts/top_nav' %>
 
   <main class="container">
+
+    <!-- Add sale display logic -->
+    <!-- Could return the current sale to display the information -->
+    <% if active_sale? %>
+    <p class="alert alert-info mt-5"> There's a sale going on!</p>
+    <% end %>
+
     <!-- The yield here is a placeholder for the action results, or views-->
     <%= yield %>
   </main>
