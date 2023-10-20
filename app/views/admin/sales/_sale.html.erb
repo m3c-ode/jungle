@@ -14,6 +14,13 @@
   <td>
     <%#= sale.status %>
     STATUS
+    <% if sale.finished? %>
+    <span class="badge bg-danger">Finished</span>
+    <% elsif sale.upcoming? %>
+    <span class="badge bg-warning">Upcoming</span>
+    <% else %>
+    <span class="badge bg-success">Active</span>
+    <% end %>
   </td>
   <td>
     <%#= link_to fa_icon('trash'), [:admin, sale], class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
