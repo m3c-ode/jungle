@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  # pending "add some examples to (or delete) #{__FILE__}"
 
   describe 'Validations' do
     it 'should validate if all fields are provided' do
@@ -59,11 +59,11 @@ RSpec.describe User, type: :model do
         password: '111',
         password_confirmation: '111'
       )
-      puts 'Checking password length'
-      p user
-      print 'user valid?: '
-      p user.valid?
-      p user.errors.full_messages
+      # puts 'Checking password length'
+      # p user
+      # print 'user valid?: '
+      # p user.valid?
+      # p user.errors.full_messages
       expect(user).to be_invalid
       expect(user.errors.full_messages[0]).to include 'Password is too short'
     end
@@ -110,6 +110,50 @@ RSpec.describe User, type: :model do
       # p user2.errors.full_messages
       expect(user2).to be_invalid
       expect(user2.errors.full_messages[0]).to include 'Email has already been taken'
+    end
+  end
+
+  describe 'Authentication' do
+    # validation examples here
+  end
+
+  describe '.authenticate_with_credentials' do
+    # examples for this class
+    it 'a user created can login' do
+      user = User.create(
+        first_name: 'Bob',
+        last_name: 'Morane',
+        email: 'bob@morane.ca',
+        password: '1111',
+        password_confirmation: '1111'
+      )
+
+      auth_user = User.authenticate_with_credentials(user.email, user.password)
+      expect(auth_user).to eq user
+    end
+
+    it 'returns nil if password not matching' do
+      user = User.create(
+        first_name: 'Bob',
+        last_name: 'Morane',
+        email: 'bob@morane.ca',
+        password: '1111',
+        password_confirmation: '1111'
+      )
+      auth_user = User.authenticate_with_credentials(user.email, '2222')
+      expect(auth_user).to be_nil
+    end
+
+    it 'should normalises email on login' do
+      user = User.create(
+        first_name: 'Bob',
+        last_name: 'Morane',
+        email: 'bob@morane.ca',
+        password: '1111',
+        password_confirmation: '1111'
+      )
+      auth_user = User.authenticate_with_credentials('     BOB@morane.ca  ', user.password)
+      expect(auth_user).to eq user
     end
   end
 end
