@@ -38,17 +38,17 @@ RSpec.describe Product, type: :model do
         quantity: 20,
         category: @category
       )
-      # puts 'price errors'
-      # p product.errors.full_messages
-      # print 'product valid?: '
-      # p product.valid?
-      # p product
+      puts 'price errors'
+      p product.errors.full_messages
+      print 'product valid?: '
+      p product.valid?
+      p product
       expect(product).to_not be_valid
       # if use my custom validate callback
-      # expect(product.errors.full_messages[0]).to include "can't be blank"
+      expect(product.errors.full_messages[0]).to include "can't be blank"
 
       # if use validates on numericality
-      expect(product.errors.full_messages[0]).to include "must be greater than 0"
+      # expect(product.errors.full_messages[0]).to include "must be greater than 0"
     end
     it 'validates presence of quantity' do
       product = Product.create(
