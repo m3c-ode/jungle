@@ -16,5 +16,7 @@ module.exports = defineConfig({
   trashAssetsBeforeRuns: false,
   env: {
     baseUrl: 'http://localhost:3000'
-  }
+  },
+  viewportWidth: 1280,
+  viewportHeight: 880
 });

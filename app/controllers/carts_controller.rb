@@ -1,7 +1,8 @@
 class CartsController < ApplicationController
 
   # Secure routes, defines in application_controller
-  before_filter :authorize
+  # TODO: From Compass, In test purpose, we do not go through this
+  before_action :authorize
 
   def show
   end
