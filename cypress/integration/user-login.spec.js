@@ -16,7 +16,6 @@ context('User login', () => {
     cy.url().then(url => {
       baseUrl = url;
     });
-
   });
   it("should redirect to homepage after login", () => {
     cy.login('bob@morane.ca', '1111');
