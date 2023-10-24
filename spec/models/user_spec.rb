@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  # pending "add some examples to (or delete) #{__FILE__}"
-
   describe 'Validations' do
     it 'should validate if all fields are provided' do
       user = User.create(
@@ -12,10 +10,7 @@ RSpec.describe User, type: :model do
         password: '1111',
         password_confirmation: '1111'
       )
-      # puts "Checking user"
-      # p user
-      # print 'user valid?: '
-      # p user.valid?
+
       expect(user).to be_valid
     end
     it 'should error if missing field' do
@@ -26,11 +21,6 @@ RSpec.describe User, type: :model do
         password: '1111',
         password_confirmation: '1111'
       )
-      # puts 'Checking user'
-      # p user
-      # print 'user valid?: '
-      # p user.valid?
-      # p user.errors.full_messages
       expect(user).to be_invalid
       expect(user.errors.full_messages[0]).to include "can't be blank"
     end
@@ -59,11 +49,7 @@ RSpec.describe User, type: :model do
         password: '111',
         password_confirmation: '111'
       )
-      # puts 'Checking password length'
-      # p user
-      # print 'user valid?: '
-      # p user.valid?
-      # p user.errors.full_messages
+
       expect(user).to be_invalid
       expect(user.errors.full_messages[0]).to include 'Password is too short'
     end
@@ -75,11 +61,7 @@ RSpec.describe User, type: :model do
         password: '1111',
         password_confirmation: nil
       )
-      # puts 'Checking password provided'
-      # p user
-      # print 'user valid?: '
-      # p user.valid?
-      # p user.errors.full_messages
+
       expect(user).to be_invalid
       expect(user.errors.full_messages[0]).to include "can't be blank"
     end
@@ -91,11 +73,6 @@ RSpec.describe User, type: :model do
         password: '1111',
         password_confirmation: '1111'
       )
-      # puts 'Checking password uniqueness'
-      # p user
-      # print 'user valid?: '
-      # p user1.valid?
-      # p user1.errors.full_messages
       user2 = User.create(
         first_name: 'Bob',
         last_name: 'Morane',
@@ -111,10 +88,6 @@ RSpec.describe User, type: :model do
       expect(user2).to be_invalid
       expect(user2.errors.full_messages[0]).to include 'Email has already been taken'
     end
-  end
-
-  describe 'Authentication' do
-    # validation examples here
   end
 
   describe '.authenticate_with_credentials' do

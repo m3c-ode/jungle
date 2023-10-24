@@ -7,14 +7,6 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 4 }
   validates :password_confirmation, presence: true
 
-  # validate :check_user
-
-  # private
-  # def check_user ()
-  #   puts "Inside validation"
-  #   p self
-  # end
-
   def self.authenticate_with_credentials(email, password)
     return unless !email.nil? && !password.nil?
 

@@ -6,10 +6,8 @@ RSpec.describe Product, type: :model do
   describe 'Validations' do
     before(:each) do
       @category = Category.create(name: 'Flowers')
-      # @product = Product.new
-      # p @category
     end
-    # validation and etst examples
+    # validation and tests examples
     it 'validates creation of a neew proudct with all 4 attributes' do
       product = Product.create(
         name: 'product',
@@ -38,13 +36,9 @@ RSpec.describe Product, type: :model do
         quantity: 20,
         category: @category
       )
-      puts 'price errors'
-      p product.errors.full_messages
-      print 'product valid?: '
-      p product.valid?
-      p product
+
       expect(product).to_not be_valid
-      # if use my custom validate callback
+      # if use my custom validate callback or allow nil
       expect(product.errors.full_messages[0]).to include "can't be blank"
 
       # if use validates on numericality
@@ -67,7 +61,7 @@ RSpec.describe Product, type: :model do
         quantity: 20,
         category: nil
       )
-      expect(product.errors.full_messages[0]).to include "must exist"
+      expect(product.errors.full_messages[0]).to include 'must exist'
       expect(product).to be_invalid
     end
   end
