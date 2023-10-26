@@ -21,9 +21,12 @@ class UsersController < ApplicationController
 
   # POST /users or /users.json
   def create
+    puts 'User params on create'
+    puts user_params
     @user = User.new(user_params)
 
     if @user.save
+      UserMailer.welcome_email(@user.select(:first_name, :last_name, :email)).deliver_later
       session[:user_id] = @user.id
       redirect_to '/'
     else
@@ -80,7 +83,7 @@ class UsersController < ApplicationController
         :last_name,
         :email,
         :password,
-        :password_digest
+        :password_confirmation
       )
     end
 end
